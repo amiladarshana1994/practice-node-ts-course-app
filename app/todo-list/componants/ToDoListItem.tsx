@@ -5,7 +5,7 @@ import styles from "./ToDoListApp.module.css";
 export interface PropType {
     task: taskType,
     key?: number,
-    updateTasks
+    updateTasks: () => void;
 }
 
 class ToDoListItem extends React.Component<PropType> {

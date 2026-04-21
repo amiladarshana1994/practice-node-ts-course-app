@@ -5,17 +5,28 @@ export interface PropType {
 }
 
 class ToDoListInput extends React.Component<PropType> {
+    state: {taskTitle:string}
+    constructor(prop:never) {
+        super(prop);
+        this.state = { taskTitle:"" }
+    }
     render(): React.ReactNode {
         return (
             <form onSubmit={(e) => {
                 e.preventDefault()
-                const input = e.target[0] as HTMLInputElement
-                console.log(input.value)
-                this.props.addTask(input.value)
-                input.value = ""
+                this.props.addTask(this.state.taskTitle)
+                this.setState({ taskTitle:"" })
             }}
             >
-                <input type="text" placeholder="Add a new task" />
+                <input value={this.state.taskTitle} 
+                       onInput={(e)=> {
+                           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                           // @ts-expect-error
+                           this.setState({taskTitle: e.target.value});
+                       }} 
+                       type="text" 
+                       placeholder="Add a new task" 
+                />
                 <button type="submit">Add</button>
             </form>
         )

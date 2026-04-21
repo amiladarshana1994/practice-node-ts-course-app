@@ -8,13 +8,15 @@ class ToDoListApp extends React.Component {
     state: Readonly<{tasks: taskType[]}> = { tasks}
     updateTasks = (tasks: taskType[]) => {
         this.setState({ tasks });
+        localStorage.setItem("tasks", JSON.stringify(tasks));
     }
 
     addTask = (taskTitle: string) => {
 
         const newTask:taskType = { id: this.state.tasks.length + 1, title: taskTitle, description: "", completed: false };
-        this.setState({ tasks : [...this.state.tasks, newTask] });
-        console.log(this.state.tasks)
+        const updatedTasks = [...this.state.tasks, newTask];
+        this.setState({ tasks : updatedTasks });
+        localStorage.setItem("tasks", JSON.stringify(updatedTasks));
     }
 
     render(): React.ReactNode {
@@ -25,6 +27,13 @@ class ToDoListApp extends React.Component {
                 <ToDoList updateTasks={this.updateTasks} title={"Tasks Completed"}  tasks={this.state.tasks.filter(t => t.completed)}></ToDoList>
             </main>
         )
+    }
+
+    componentDidMount() {
+        const storedTasks = localStorage.getItem("tasks");
+        if (storedTasks) {
+            this.setState({ tasks: JSON.parse(storedTasks) });
+        }
     }
 }
 

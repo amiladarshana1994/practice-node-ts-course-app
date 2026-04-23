@@ -1,0 +1,26 @@
+.header {
+  width: 100%;
+  padding: 24px 16px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  margin-bottom: 32px;
+
+  h1 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 700;
+    color: #ffffff;
+    text-align: center;
+    letter-spacing: 0.5px;
+
+    @media (max-width: 640px) {
+      font-size: 24px;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    background: linear-gradient(135deg, #4c5aa4 0%, #5a3a7a 100%);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  }
+}
+

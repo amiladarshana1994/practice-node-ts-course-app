@@ -1,0 +1,66 @@
+.container {
+  display: flex;
+  width: 100%;
+  max-width: 800px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  &>div {
+    padding: 10px;
+  }
+  &:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    transform: translateY(-4px);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    background-color: #1f1f1f;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+
+    &:hover {
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+    }
+  }
+}
+
+.avatar {
+  max-width: 200px;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.info {
+  padding: 16px;
+
+  h2 {
+    margin: 0 0 8px 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: #171717;
+
+    @media (prefers-color-scheme: dark) {
+      color: #ededed;
+    }
+  }
+
+  p {
+    margin: 6px 0;
+    font-size: 13px;
+    color: #666;
+    line-height: 1.4;
+    word-break: break-word;
+
+    @media (prefers-color-scheme: dark) {
+      color: #aaa;
+    }
+
+    &:first-of-type {
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+  }
+}

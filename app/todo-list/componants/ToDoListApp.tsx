@@ -6,13 +6,13 @@ import ToDoListInput from "@/app/todo-list/componants/ToDoListInput";
 
 class ToDoListApp extends React.Component {
     state: Readonly<{tasks: taskType[]}> = { tasks}
-    updateTasks = (tasks: taskType[]) => {
-        this.setState({ tasks });
-        localStorage.setItem("tasks", JSON.stringify(tasks));
+    updateTasks = () => {
+        const updatedTasks = [...this.state.tasks];
+        this.setState({ updatedTasks });
+        localStorage.setItem("tasks", JSON.stringify(updatedTasks));
     }
 
     addTask = (taskTitle: string) => {
-
         const newTask:taskType = { id: this.state.tasks.length + 1, title: taskTitle, description: "", completed: false };
         const updatedTasks = [...this.state.tasks, newTask];
         this.setState({ tasks : updatedTasks });
@@ -22,7 +22,7 @@ class ToDoListApp extends React.Component {
     render(): React.ReactNode {
         return (
             <main className={styles.wrapper}>
-                <ToDoListInput addTask={this.addTask} > </ToDoListInput>
+                <ToDoListInput addTask={this.addTask} />
                 <ToDoList updateTasks={this.updateTasks} title={"Tasks OnGoing"} tasks={this.state.tasks.filter(t => !t.completed)}></ToDoList>
                 <ToDoList updateTasks={this.updateTasks} title={"Tasks Completed"}  tasks={this.state.tasks.filter(t => t.completed)}></ToDoList>
             </main>

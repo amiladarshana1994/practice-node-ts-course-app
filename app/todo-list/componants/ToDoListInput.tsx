@@ -4,9 +4,13 @@ export interface PropType {
     addTask: (taskTitle: string) => void;
 }
 
-class ToDoListInput extends React.Component<PropType> {
+interface StateType {
+    taskTitle: string;
+}
+
+class ToDoListInput extends React.Component<PropType, StateType> {
     state: {taskTitle:string}
-    constructor(prop:never) {
+    constructor(prop:PropType) {
         super(prop);
         this.state = { taskTitle:"" }
     }
@@ -18,10 +22,8 @@ class ToDoListInput extends React.Component<PropType> {
                 this.setState({ taskTitle:"" })
             }}
             >
-                <input value={this.state.taskTitle} 
-                       onInput={(e)=> {
-                           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                           // @ts-expect-error
+                <input value={this.state.taskTitle}
+                       onChange={(e)=> {
                            this.setState({taskTitle: e.target.value});
                        }} 
                        type="text" 
